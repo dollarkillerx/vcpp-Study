@@ -32,3 +32,7 @@
 *.app
 demo1/.vs/demo1/v16/Browse.VC.opendb
 *.opendb
+demo1/demo1/Release/
+demo1/demo1/Release
+demo1/demo1/Debug/
+demo1/demo1/Debug
