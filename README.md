@@ -150,5 +150,228 @@ for (int i = 0; i < getArrayLen(apple2);i++)
 return 0;
 // 定义确定大小
 ```
-### 字符数组
+### 字符数组 [demo1/test10.cpp]
+```
+	char szChar[10];
+	szChar[0] = 'A';
+	szChar[1] = 'B';
+	szChar[2] = 'C';
+	szChar[3] = 'D';
+	szChar[4] = 'E';
+	szChar[5] = 'F';
+	for (int i = 0; i < getArrayLen(szChar); i++)
+	{
+		cout << szChar[i] << endl;
+	}
 
+	char srChar[20] = "hello world";  // 多出的都是'\0'
+	for (int i =0;i<getArrayLen(srChar);i++)
+	{
+		cout << srChar[i] << endl;
+	}
+	cout << getArrayLen(srChar) << endl;
+	char stc2[] = "钉钉我是你爸爸!!!";  // 动态设置长度  末尾是'\0'
+	cout << stc2 << endl;
+```
+注意结束符
+```
+	char szBuf[10] = { 'c','c','t','r','y','p','x','p','m','.' }; // 当没有结束符 时可能输出其他的东西
+	cout << szBuf << endl;
+
+	char szBuf2[11] = { 'c','c','t','r','y','p','x','p','m','.','\0'}; // 当没有结束符 时可能输出其他的东西
+	cout << szBuf2 << endl;
+```
+小测试  遍历数组 "Hello,github,my name is 你大爷,what is your name?"
+把其中i替换为@并 统计替换个数
+```
+void test4()
+{
+	char szBuf[100] = "Hello,github,my name is 你大爷,what is your name?";
+	int a = 0;
+	for (int i=0;i<100;i++)
+	{
+		if (szBuf[i] == 'i')
+		{
+			szBuf[i] = '@';
+			a++;
+		}
+		if (szBuf[i] == '\0')
+		{
+			break;;
+		}
+	}
+	cout << szBuf << endl;
+	cout << a << endl;
+}
+```
+### 字符数组处理 [demo1/test11.cpp]
+- strcat_s `strcat_s(a,b);` 字符串拼接 b往a的尾巴添加  需保证a足够大 不然会报错
+- strcpy_s `strcpy_s(a, b);` 字符串拷贝   参数2中的str 拷贝到参数1的str中
+- strcmp `strcmp(a, b);` 字符串比较 相等返回0
+- strlen 字符串长度 
+小试牛刀: 不使用系统提供的strcat函数 自己实现这个
+
+### 地址与指针 [demo1/test12.cpp]
+基类型* 指针变量名称;
+```
+int* p;
+int *p; 都可以
+```
+
+```
+	// &ch 去ch的内存地址(内存位置的门牌号)
+	// *ch 取值  (取内存中实际存储的值)
+	// char* p 指针 用来存储 变量的地址 (相当于名片 存变量家给位置)
+
+	void tp(int* a)
+	{
+		cout << a << endl; // 打印门牌号
+		cout << *a << endl; // 打印里面住的什么人
+	}
+
+	int a = 46;
+	tp(&a);
+
+	int a = 10;
+	int* b = &a;
+	*b = 20;
+	cout << a << endl;  // 20
+	cout << *b << endl; // 20
+	a = 25;
+	cout << *b << endl; // 25
+```
+数组名字 就是数组的首地址
+```
+	int a[100] = { 0 };
+	int* pa = &a[0];
+	cout << &a << endl;
+	cout << a << endl;  // 这个指针是const   (int const* a)
+	cout << &a[0] << endl;
+
+	int num[100] = { 1,2,3 };
+	int* pnum = &num[0];
+	cout << "num[1]: " << *(pnum + 1) << endl;
+	// 数组是连续开辟的内存空间
+```
+指针遍历数组
+```
+	int a[] = { 1,2,3,4,5,6,7,8,9,10,100 };
+	int* pa = a;
+	for (int idx=0;idx<arrayLen(a);idx++)
+	{
+		cout << *(pa + idx) << endl;
+	}
+```
+小试牛刀: `a123x456_17960?302ab5876` 将当中的number放入一个新的数组中
+
+### 结构体 地址与指针 [demo1/test13.cpp]
+```
+struct student
+{
+	string name;
+	int id;
+	int age;
+	char sex;
+};
+
+int main()
+{
+	student a; // 未初始化化为 随机的值
+	a.age = 18;
+	a.name = "你大爷";
+	a.id = 1215648748486;
+	a.sex = 'm';
+	student b{
+		"sdsd",
+	};
+	cout << a.name << endl;
+	return 0;
+}
+
+	// 结构体数组
+	student ac[] = {
+		{
+			"",
+			15,
+			18,
+			'm',
+		},	{
+			"",
+			15,
+			18,
+			'm',
+		},
+	};
+
+	// 结构体指针
+	void changeAge(student* st,int age)
+	{
+		//(*st).age = age;
+		st->age = age;
+	}
+```
+### 枚举 & 别名 [demo1/test14.cpp]
+```
+enum sex
+{
+	man,
+	wman
+};
+typedef int c;
+```
+
+### 引用 new & delete [demo1/test15.cpp]
+cpp 建议多用引用少用指针 
+1. 引用不能单独存在，必须寄生一个宿主里面
+2.不能建立引用的数组
+3.可以建立引用的引用   可以建立引用的指针
+```
+	int a = 5;
+	int& b = a; // 此为引用
+	int* p = &a;
+	cout << a << endl;
+	cout << b << endl; 
+	cout << p << endl;
+	// 紧跟在数据类型后的&为 引用声明符号  其他情况都可能是取地址符号
+	cout << &a << endl;
+	cout << &b << endl;
+	引用就相当于这个变量的别名
+
+
+void swapc(int& a,int& b)
+{
+	int c = a;
+	a = b;
+	b = c;
+}
+
+void tx2()
+{
+	int a = 12;
+	int b = 66;
+	swapc(a, b);
+	cout << "a: " << a << endl;
+	cout << "b: " << b << endl;
+}
+```
+new delete 动态分配内存
+```
+student* tx3()
+{
+	return new student{  // 开辟内存
+		"dopc",
+		18
+	};
+}
+
+int main()
+{
+	//tx1();
+	//tx2();
+	student* tx = tx3();
+	cout << tx->age << endl;
+	cout << tx->name << endl;
+	delete(tx);
+	return 0;
+}
+```

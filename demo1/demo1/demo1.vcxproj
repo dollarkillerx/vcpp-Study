@@ -21,6 +21,11 @@
   <ItemGroup>
     <ClCompile Include="helloworld.cpp" />
     <ClCompile Include="test10.cpp" />
+    <ClCompile Include="test11.cpp" />
+    <ClCompile Include="test12.cpp" />
+    <ClCompile Include="test13.cpp" />
+    <ClCompile Include="test14.cpp" />
+    <ClCompile Include="test15.cpp" />
     <ClCompile Include="test2.cpp" />
     <ClCompile Include="test3.cpp" />
     <ClCompile Include="test4.cpp" />
