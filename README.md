@@ -320,7 +320,7 @@ enum sex
 typedef int c;
 ```
 
-### 引用 new & delete [demo1/test15.cpp]
+### 引用 new & delete [demo1/test15.cpp]  申请内存  释放内存
 cpp 建议多用引用少用指针 
 1. 引用不能单独存在，必须寄生一个宿主里面
 2.不能建立引用的数组
@@ -371,7 +371,35 @@ int main()
 	student* tx = tx3();
 	cout << tx->age << endl;
 	cout << tx->name << endl;
-	delete(tx);
+	delete tx; // 删除变量
+
+	int* pll = new int[10];
+	pll[0] = 2;
+	pll[1] = 3;
+
+	cout << "In Array len: "<< getArrayLength(pll) << endl;
+	for (int i=0;i<2;i++)
+	{
+		cout << *(pll + i) << endl;
+	}
+	delete[] pll; // 删除数组  释放内存
 	return 0;
 }
+
 ```
+
+### 面向对象篇章
+```
+	Student a = Student("钉钉我是你爸爸",123456,88,'m');
+	cout << "name: " << a.getName() << endl;
+	cout << "age: " << a.getAge() << endl;
+
+	cout << "####  two  ####" << endl;
+	Student* b = new Student("钉钉我是你的爸爸2	",88888,88,'m');
+	cout << b->getName() << endl;
+	cout << b->getAge() << endl;
+```
+#### 成员访问限定 和Java一样
+- public
+- private
+- protected
