@@ -398,8 +398,20 @@ int main()
 	Student* b = new Student("钉钉我是你的爸爸2	",88888,88,'m');
 	cout << b->getName() << endl;
 	cout << b->getAge() << endl;
+
+	#define MAX_NUM(x,y) (x > y ? x : y)  // 宏
 ```
 #### 成员访问限定 和Java一样
 - public
 - private
 - protected
+
+备注:
+```
+默认情况下，在类中直接定义/实现的函数，C++会自动将其作为inline内联函数处理
+
+在类外定义函数c++默认会当作普通的成员函数
+```
+#### 多文件分离类
+将类的声明放入到.h头文件
+将类的实现放入.cpp文件

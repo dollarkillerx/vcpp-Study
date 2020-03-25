@@ -36,7 +36,7 @@ class Humanity
 	string name;
 	int age;
 public:
-	Humanity();
+	Humanity(){};
 	void setName(string name)
 	{
 		this->name = name;
@@ -55,6 +55,7 @@ public:
 	}
 };
 
+#define MAX_NUM(x,y) (x > y ? x : y)  // ºê
 
 int main()
 {
@@ -62,12 +63,12 @@ int main()
 	//arrayTest2(a);
 
 
-	Student a = Student("¶¤¶¤ÎÒÊÇÄã°Ö°Ö",123456,88,'m');
+	Student a = Student("¶¤¶¤ÎÒÊÇÄã°Ö°Ö", 123456, 88, 'm');
 	cout << "name: " << a.getName() << endl;
 	cout << "age: " << a.getAge() << endl;
 
 	cout << "####  two  ####" << endl;
-	Student* b = new Student("¶¤¶¤ÎÒÊÇÄãµÄ°Ö°Ö2	",88888,88,'m');
+	Student* b = new Student("¶¤¶¤ÎÒÊÇÄãµÄ°Ö°Ö2	", 88888, 88, 'm');
 	cout << b->getName() << endl;
 	cout << b->getAge() << endl;
 
@@ -79,6 +80,15 @@ int main()
 	cin >> name;
 	
 	cin >> age;
-
+	hum->setAge(age);
+	hum->setName(name);
+	cout << "Name: " << hum->getName() << endl;
+	cout << "Age: " << hum->getAge() << endl;
+	
+	int c = 16;
+	int d = 22;
+	cout << MAX_NUM(c, d) << endl;
+	delete b;
+	delete hum;
 	return 0;
 }
